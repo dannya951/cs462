@@ -6,7 +6,7 @@ ruleset hello_world {
    
   global {
     __testing = { "queries": [],
-                  "events": [ { "domain": "echo", "type": "monkey", "args": [ "name" ] } ]
+                  "events": [ { "domain": "echo", "type": "monkey" } ]
     }
   }
    
