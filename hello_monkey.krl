@@ -1,18 +1,11 @@
 ruleset hello_world {
   meta {
-    name "Hello World"
-    description <<
-A first ruleset for the Quickstart
->>
-    author "Phil Windley"
     logging on
-    shares hello
+    shares __testing
   }
    
   global {
-    hello = function(obj) {
-      msg = "Hello " + obj;
-      msg
+    __testing = { "events": [ { "domain": "echo", "type": "monkey", "args": [ "name" ] } ]
     }
   }
    
@@ -24,7 +17,7 @@ A first ruleset for the Quickstart
   rule hello_monkey {
   	select when echo monkey
   	pre {
-  	  name = event:attr("name").defaultsTo("Monkey")
+  	  name = event:attr("name").defaultsTo("Monkey").klog("Name supplied for event: ")
   	}
   	send_directive("Hello " + name)
   }
