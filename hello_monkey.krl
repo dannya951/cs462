@@ -23,7 +23,7 @@ A first ruleset for the Quickstart
 
   rule hello_monkey {
   	select when echo monkey
-  	send_directive("Hello Moneky")
+  	send_directive("say", {"something": "Hello Monkey"})
   }
    
 }
