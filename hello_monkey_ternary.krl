@@ -18,7 +18,7 @@ ruleset hello_world {
   rule hello_monkey {
   	select when echo monkey
   	pre {
-  	  name = ((event:attr("name") != "") => event:attr("name") | "Monkey").klog("Name supplied for event: ")
+  	  name = ((event:attr("name") == "" || event:attr("name").isnull()) => "Monkey" | event:attr("name")).klog("Name supplied for event: ")
   	}
   	send_directive("Hello " + name)
   }
