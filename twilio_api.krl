@@ -3,7 +3,7 @@ ruleset twilio_api {
     logging on
     configure using account_sid = ""
     	auth_token = ""
-    provides send_message
+    provides send_message ,messages
   }
    
   global {
@@ -14,6 +14,13 @@ ruleset twilio_api {
                 "To":destination,
                 "Body":message
             })
+    }
+    
+    messages=function(){
+      base_url = <<https://#{account_sid}:#{auth_token}@api.twilio.com/2010-04-01/Accounts/#{account_sid}/Messages.json?PageSize=20>>
+      response = http:get(base_url)
+      returned_messages = response{"content"}
+      returned_messages
     }
   }
 }
