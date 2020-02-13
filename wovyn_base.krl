@@ -12,7 +12,7 @@ ruleset wovyn_base {
     __testing = {"queries": [ {"name": "__testing" } ],
                 "events": [ { "domain": "wovyn", "type": "heartbeat",
                               "attrs": ["genericThing"] } ] }
-    temperature_threshold = 90;
+    temperature_threshold = 85;
     source_number = "+15034064270"
     dest_number = "+18017848121"
   }
@@ -25,7 +25,8 @@ ruleset wovyn_base {
       temperature = data.get(["temperature"]).decode().head()
       timestamp = time:now()
     }
-    send_directive("Heartbeat Received")
+    //send_directive("Heartbeat Received")
+    noop()
     fired{
       raise wovyn event "new_temperature_reading"
         attributes {
@@ -43,7 +44,8 @@ ruleset wovyn_base {
       exceeded_temp = temperature_value > temperature_threshold
       directive_message = exceeded_temp => "Temperature Threshold Exceeded" | "Temperature at or Below Threshold"
     }
-    send_directive("Temperature Status", {"Message": directive_message})
+    //send_directive("Temperature Status", {"Message": directive_message})
+    noop()
     always{
       raise wovyn event "threshold_violation"
         attributes {
@@ -61,7 +63,9 @@ ruleset wovyn_base {
       timestamp = event:attrs.get(["timestamp"]).decode()
       message = "Temperature Threshold Exceeded; Temperature at " + timestamp + ": " + temperature_value + " Degrees"
     }
-    twilio_api:send_message(source_number, dest_number, message)
+    //twilio_api:send_message(source_number, dest_number, message)
+    //send_directive("Temperature Threshold Alert", {"Message": message})
+    noop()
   }
   
 }
