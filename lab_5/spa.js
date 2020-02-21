@@ -2,44 +2,12 @@ angular.module('spa', [])
 .controller('MainCtrl', [
   '$scope','$http','$window',
   function($scope,$http,$window){
-    //$scope.timings = [];
+    $scope.profile = {};
     $scope.current_temperature = "";
     $scope.temperatures = [];
     $scope.threshold_violations = [];
     $scope.eci = $window.location.search.substring(1);
-
-    /*
-    var bURL = 'http://localhost:8080/sky/event/'+$scope.eci+'/eid/timing/started';
-    $scope.addTiming = function() {
-      var pURL = bURL + "?number=" + $scope.number + "&name=" + $scope.name;
-      return $http.post(pURL).success(function(data){
-        $scope.getAll();
-        $scope.number='';
-        $scope.name='';
-      });
-    };
-    */
  
-    /*
-    var iURL = 'http://localhost:8080/sky/event/'+$scope.eci+'/eid/timing/finished';
-    $scope.finished = function(number) {
-      var pURL = iURL + "?number=" + number;
-      return $http.post(pURL).success(function(data){
-        $scope.getAll();
-      });
-    };
-    */
- 
-    /*
-    var gURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/timing_tracker/entries';
-    $scope.getAll = function() {
-      return $http.get(gURL).success(function(data){
-        angular.copy(data, $scope.timings);
-      });
-    };
- 
-    $scope.getAll();
-    */
     var ctURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/temperature_store/current_temperature';
     $scope.get_current_temperature = function () {
       return $http.get(ctURL).success(function(data){
@@ -66,6 +34,27 @@ angular.module('spa', [])
     };
 
     $scope.get_threshold_violations();
+
+    var ppuURL = 'http://localhost:8080/sky/event/'+$scope.eci+'/000/sensor/profile_updated';
+    $scope.profile_updated = function() {
+      var puURL = ppuURL + "?location=" + $scope.location + "&name=" + $scope.name+ "&threshold=" + $scope.threshold + "&number=" + $scope.number;
+      return $http.post(puURL).success(function(data){
+        $scope.get_profile();
+        $scope.location = '';
+        $scope.name = '';
+        $scope.threshold = '';
+        $scope.number = '';
+      });
+    };
+
+    var gpURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/sensor_profile/profile';
+    $scope.get_profile = function() {
+      return $http.get(gpURL).success(function(data){
+        angular.copy(data, $scope.profile);
+      });
+    };
+
+    $scope.get_profile();
  
     /*
     $scope.timeDiff = function(timing) {
