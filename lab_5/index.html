@@ -32,8 +32,9 @@
   -->
   <hr>
   <br>
+  Current Temperature:
   <div>
-    Current Temperature:<br>{{current_temperature}}
+    {{current_temperature}}
   </div>
   <br>
   Previous Temperature Readings:
@@ -42,6 +43,7 @@
     {{temperature.timestamp}}
   </div>
   <br>
+  Temperature Violations:
   <div ng-repeat="threshold_violation in threshold_violations | orderBy: '-ordinal'">
     {{threshold_violation.temperature}} &middot;
     {{threshold_violation.timestamp}}
