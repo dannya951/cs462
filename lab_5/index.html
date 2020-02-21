@@ -36,6 +36,7 @@
     Current Temperature:<br>{{current_temperature}}
   </div>
   <br>
+  Previous Temperature Readings:
   <div ng-repeat="temperature in temperatures | orderBy: '-ordinal'">
     {{temperature.temperature}} &middot;
     {{temperature.timestamp}}
