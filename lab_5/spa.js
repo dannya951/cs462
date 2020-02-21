@@ -7,6 +7,7 @@ angular.module('spa', [])
     $scope.temperatures = [];
     $scope.threshold_violations = [];
     $scope.eci = $window.location.search.substring(1);
+    $scope.temperatures_page = true;
  
     var ctURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/temperature_store/current_temperature';
     $scope.get_current_temperature = function () {
@@ -56,8 +57,8 @@ angular.module('spa', [])
 
     $scope.get_profile();
 
-    $scope.go_to_profile_page = function() {
-      alert("Switching to Profile Page");
+    $scope.toggle_page = function() {
+      $scope.temperatures_page = !$scope.temperatures_page
     };
  
     /*
