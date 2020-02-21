@@ -13,7 +13,7 @@
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
 <div class="page-header">
-  <h1>Lab 5a: Single Page Application</h1>
+  <h1>Lab 5: Single Page Application</h1>
 </div>
   <div ng-show="temperatures_page">
     <br>
@@ -59,6 +59,21 @@
       <form ng-submit="toggle_page()">
         <button type="submit">View Temperature Readings</button>
       </form>
+      <br>
+      <h4>Update Profile:</h4>
+      <form ng-submit="profile_updated()">
+        <input type="text" ng-model="location" placeholder="location"></input>
+        <input type="text" ng-model="name" placeholder="name"></input>
+        <input type="text" ng-model="threshold" placeholder="threshold"></input>
+        <input type="text" ng-model="number" placeholder="number"></input>
+        <button type="submit">Update</button>
+      </form>
+      <br>
+      <h4>Current Profile:</h4>
+      <b>Sensor Location: </b>{{location}}
+      <b>Sensor Name: </b>{{name}}
+      <b>Threshold Temperature: </b>{{threshold}}
+      <b>SMS Number: </b>{{number}}
     </div>
   </div>
 </div>
