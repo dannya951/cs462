@@ -20,21 +20,6 @@
     <form ng-submit="toggle_page()">
       <button type="submit">View/Update Profile</button>
     </form>
-    <!--
-    <form ng-submit="addTiming()" style = "margin-top:30px;">
-      <input type="text" ng-model="number" placeholder="number" autofocus></input>
-      <input type="text" ng-model="name" placeholder="name"></input>
-      <button type="submit" focus-input>timing started</button>
-    </form>
-    <div ng-repeat="timing in timings | orderBy: '-ordinal'">
-      {{timing.number}} &middot;
-      {{timing.name}} &middot;
-      {{timing.time_out}} &middot;
-      {{timing.time_in}}
-      <span class="finished" ng-click="finished(timing.number)" ng-if="!timing.time_in">timing finished</span>
-      <span ng-if="!!timing.time_in">&middot; {{timeDiff(timing)}}</span>
-    </div>
-    -->
     <br>
     <h4>Current Temperature:</h4>
     <div>
@@ -72,7 +57,8 @@
       <h4>Current Profile:</h4>
       <b>Sensor Location: </b>{{profile.location}}
       <br>
-      <b>Sensor Name: </b>{{profile.name}}<br>
+      <b>Sensor Name: </b>{{profile.name}}
+      <br>
       <b>Threshold Temperature: </b>{{profile.threshold}}
       <br>
       <b>SMS Number: </b>{{profile.number}}
