@@ -8,6 +8,10 @@ angular.module('spa', [])
     $scope.threshold_violations = [];
     $scope.eci = $window.location.search.substring(1);
     $scope.temperatures_page = true;
+    $scope.location = '';
+    $scope.name = '';
+    $scope.threshold = '';
+    $scope.number = '';
  
     var ctURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/temperature_store/current_temperature';
     $scope.get_current_temperature = function () {
