@@ -13,9 +13,9 @@
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
 <div class="page-header">
-  <h1>Lab 5: Single Page Application</h1>
+  <h1>Lab 5a: Single Page Application</h1>
 </div>
-  <div ngIf="temperatures_page">
+  <div ng-show="temperatures_page">
     <br>
     <form ng-submit="toggle_page()">
       <button type="submit">View/Update Profile</button>
@@ -53,7 +53,7 @@
       {{threshold_violation.timestamp}}
     </div>
   </div>
-  <div ngIf="!temperatures_page">
+  <div ng-show="!temperatures_page">
     <div>
       <br>
       <form ng-submit="toggle_page()">
