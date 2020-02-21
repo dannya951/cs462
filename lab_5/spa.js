@@ -3,7 +3,7 @@ angular.module('spa', [])
   '$scope','$http','$window',
   function($scope,$http,$window){
     //$scope.timings = [];
-    $scope.current_temperature = "No Reading Yet";
+    $scope.current_temperature = "";
     $scope.temperatures = [];
     $scope.threshold_violations = [];
     $scope.eci = $window.location.search.substring(1);
