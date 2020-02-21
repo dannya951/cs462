@@ -14,6 +14,7 @@ angular.module('spa', [])
   '$scope','$http','$window',
   function($scope,$http,$window){
 
+    alert('Alert Test');
     //$scope.timings = [];
     $scope.current_temperature = "No Reading Yet";
     $scope.temperatures = [];
