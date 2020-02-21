@@ -30,20 +30,19 @@
     <span ng-if="!!timing.time_in">&middot; {{timeDiff(timing)}}</span>
   </div>
   -->
-  <hr>
   <br>
-  Current Temperature:
+  <h3>Current Temperature:</h3>
   <div>
     {{current_temperature}}
   </div>
   <br>
-  Previous Temperature Readings:
+  <h3>Prior Readings:</h3>
   <div ng-repeat="temperature in temperatures | orderBy: '-ordinal'">
     {{temperature.temperature}} &middot;
     {{temperature.timestamp}}
   </div>
   <br>
-  Temperature Violations:
+  <h3>Temperature Violations:</h3>
   <div ng-repeat="threshold_violation in threshold_violations | orderBy: '-ordinal'">
     {{threshold_violation.temperature}} &middot;
     {{threshold_violation.timestamp}}
