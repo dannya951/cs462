@@ -15,49 +15,52 @@
 <div class="page-header">
   <h1>Lab 5: Single Page Application</h1>
 </div>
-  <div *ngIf="temperatures_page; else profile_page">
-  <br>
-  <form ng-submit="toggle_page()">
-    <button type="submit">View/Update Profile</button>
-  </form>
-  <!--
-  <form ng-submit="addTiming()" style = "margin-top:30px;">
-    <input type="text" ng-model="number" placeholder="number" autofocus></input>
-    <input type="text" ng-model="name" placeholder="name"></input>
-    <button type="submit" focus-input>timing started</button>
-  </form>
-  <div ng-repeat="timing in timings | orderBy: '-ordinal'">
-    {{timing.number}} &middot;
-    {{timing.name}} &middot;
-    {{timing.time_out}} &middot;
-    {{timing.time_in}}
-    <span class="finished" ng-click="finished(timing.number)" ng-if="!timing.time_in">timing finished</span>
-    <span ng-if="!!timing.time_in">&middot; {{timeDiff(timing)}}</span>
-  </div>
-  -->
-  <br>
-  <h4>Current Temperature:</h4>
-  <div>
-    {{current_temperature}}
-  </div>
-  <br>
-  <h4>Prior Readings:</h4>
-  <div ng-repeat="temperature in temperatures | orderBy: '-ordinal'">
-    {{temperature.temperature}} &middot;
-    {{temperature.timestamp}}
-  </div>
-  <br>
-  <h4>Temperature Violations:</h4>
-  <div ng-repeat="threshold_violation in threshold_violations | orderBy: '-ordinal'">
-    {{threshold_violation.temperature}} &middot;
-    {{threshold_violation.timestamp}}
-  </div>
+  {{temperatures_page}}
+  <div *ngIf="temperatures_page as value; else profile_page">
+    <br>
+    <form ng-submit="toggle_page()">
+      <button type="submit">View/Update Profile</button>
+    </form>
+    <!--
+    <form ng-submit="addTiming()" style = "margin-top:30px;">
+      <input type="text" ng-model="number" placeholder="number" autofocus></input>
+      <input type="text" ng-model="name" placeholder="name"></input>
+      <button type="submit" focus-input>timing started</button>
+    </form>
+    <div ng-repeat="timing in timings | orderBy: '-ordinal'">
+      {{timing.number}} &middot;
+      {{timing.name}} &middot;
+      {{timing.time_out}} &middot;
+      {{timing.time_in}}
+      <span class="finished" ng-click="finished(timing.number)" ng-if="!timing.time_in">timing finished</span>
+      <span ng-if="!!timing.time_in">&middot; {{timeDiff(timing)}}</span>
+    </div>
+    -->
+    <br>
+    <h4>Current Temperature:</h4>
+    <div>
+      {{current_temperature}}
+    </div>
+    <br>
+    <h4>Prior Readings:</h4>
+    <div ng-repeat="temperature in temperatures | orderBy: '-ordinal'">
+      {{temperature.temperature}} &middot;
+      {{temperature.timestamp}}
+    </div>
+    <br>
+    <h4>Temperature Violations:</h4>
+    <div ng-repeat="threshold_violation in threshold_violations | orderBy: '-ordinal'">
+      {{threshold_violation.temperature}} &middot;
+      {{threshold_violation.timestamp}}
+    </div>
   </div>
   <ng-template #profile_page>
-  <br>
-  <form ng-submit="toggle_page()">
-    <button type="submit">View Temperature Readings</button>
-  </form>
+    <div>
+      <br>
+      <form ng-submit="toggle_page()">
+        <button type="submit">View Temperature Readings</button>
+      </form>
+    </div>
   </ng-template>
 </div>
 </div>
