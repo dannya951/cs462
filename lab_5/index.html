@@ -15,12 +15,11 @@
 <div class="page-header">
   <h1>Lab 5: Single Page Application</h1>
 </div>
-  <div *ngIf="temperatures_page; else profile_page">
+  <div ngIf="temperatures_page">
     <br>
     <form ng-submit="toggle_page()">
       <button type="submit">View/Update Profile</button>
     </form>
-    {{temperatures_page}}
     <!--
     <form ng-submit="addTiming()" style = "margin-top:30px;">
       <input type="text" ng-model="number" placeholder="number" autofocus></input>
@@ -54,14 +53,14 @@
       {{threshold_violation.timestamp}}
     </div>
   </div>
-  <ng-template #profile_page>
+  <div ngIf="!temperatures_page">
     <div>
       <br>
       <form ng-submit="toggle_page()">
         <button type="submit">View Temperature Readings</button>
       </form>
     </div>
-  </ng-template>
+  </div>
 </div>
 </div>
 </body>
