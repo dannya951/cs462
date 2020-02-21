@@ -31,18 +31,18 @@
   </div>
   -->
   <br>
-  <h3>Current Temperature:</h3>
+  <h4>Current Temperature:</h4>
   <div>
     {{current_temperature}}
   </div>
   <br>
-  <h3>Prior Readings:</h3>
+  <h4>Prior Readings:</h4>
   <div ng-repeat="temperature in temperatures | orderBy: '-ordinal'">
     {{temperature.temperature}} &middot;
     {{temperature.timestamp}}
   </div>
   <br>
-  <h3>Temperature Violations:</h3>
+  <h4>Temperature Violations:</h4>
   <div ng-repeat="threshold_violation in threshold_violations | orderBy: '-ordinal'">
     {{threshold_violation.temperature}} &middot;
     {{threshold_violation.timestamp}}
