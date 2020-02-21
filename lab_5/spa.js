@@ -55,7 +55,7 @@ angular.module('spa', [])
     var ctURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/temperature_store/current_temperature';
     $scope.get_current_temperature = function () {
       return $http.get(ctURL).success(function(data){
-        angular.copy(data, $scope.current_temperature);
+        $scope.current_temperature = data;
       });
     };
 
