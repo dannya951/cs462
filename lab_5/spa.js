@@ -55,6 +55,10 @@ angular.module('spa', [])
     };
 
     $scope.get_profile();
+
+    $scope.go_to_profile_page = function() {
+      alert("Switching to Profile Page");
+    };
  
     /*
     $scope.timeDiff = function(timing) {
