@@ -61,7 +61,7 @@ angular.module('spa', [])
     $scope.get_temperatures();
 
     var tvURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/temperature_store/threshold_violations';
-    $scope.get_threshold_violations() {
+    $scope.get_threshold_violations = function() {
       return $http.get(tvURL).success(function(data){
         angular.copy(data, $scope.threshold_violations);
       });
