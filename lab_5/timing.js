@@ -16,7 +16,7 @@ angular.module('timing', [])
     $scope.timings = [];
     $scope.eci = $window.location.search.substring(1);
  
-    var bURL = 'http://localhost:8080/sky/event/'+$scope.eci+'/eid/timing/started';
+    var bURL = 'localhost:8080/sky/event/'+$scope.eci+'/eid/timing/started';
     $scope.addTiming = function() {
       var pURL = bURL + "?number=" + $scope.number + "&name=" + $scope.name;
       return $http.post(pURL).success(function(data){
@@ -26,7 +26,7 @@ angular.module('timing', [])
       });
     };
  
-    var iURL = 'http://localhost:8080/sky/event/'+$scope.eci+'/eid/timing/finished';
+    var iURL = 'localhost:8080/sky/event/'+$scope.eci+'/eid/timing/finished';
     $scope.finished = function(number) {
       var pURL = iURL + "?number=" + number;
       return $http.post(pURL).success(function(data){
@@ -34,7 +34,7 @@ angular.module('timing', [])
       });
     };
  
-    var gURL = 'http://localhost:8080/sky/cloud/'+$scope.eci+'/timing_tracker/entries';
+    var gURL = 'localhost:8080/sky/cloud/'+$scope.eci+'/timing_tracker/entries';
     $scope.getAll = function() {
       return $http.get(gURL).success(function(data){
         angular.copy(data, $scope.timings);
