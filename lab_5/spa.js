@@ -58,7 +58,7 @@ angular.module('spa', [])
     $scope.get_profile();
 
     $scope.toggle_page = function() {
-      $scope.temperatures_page = !$scope.temperatures_page
+      $scope.temperatures_page = !($scope.temperatures_page);
     };
  
     /*
