@@ -190,7 +190,7 @@ ruleset manage_sensors {
     if from_sensor_subscription then 
       noop()
     fired {
-      ent:subscription_values := ent:subscription_values.defaultTo({}).put(name, subscription_values)
+      ent:subscription_values := ent:subscription_values.defaultsTo({}).put(name, subscription_values)
     }
   }
   
