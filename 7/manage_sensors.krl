@@ -15,12 +15,12 @@ ruleset manage_sensors {
                     "Tx_role", "channel_type"]}] }
                 
     threshold_temperature = function() {
-      threshold = ent:threshold_temperature.defaultsTo(100)
+      threshold = ent:threshold_temperature.defaultsTo(85)
       threshold
     }
     
     sms_number = function() {
-      number = ent:sms_number.defaultsTo("+19519651576")
+      number = ent:sms_number.defaultsTo("+18017848121")
       number
     }
     
@@ -32,13 +32,20 @@ ruleset manage_sensors {
     
     
     temperatures = function() {
-      temperature_map = subscription_sensors().map(
-        function(eci,name) {
-          temperature = wrangler:skyQuery(eci, "temperature_store", "current_temperature", [])
-          temperature
+      temperature_array = subscription_sensors().map(
+        function(sub_info) {
+          info = sub_info// .klog("***** Subscription Info *****: ")
+          Tx = sub_info.get("Tx")
+          Tx_host = sub_info.get("Tx_host")// .klog("***** Tx host *****: ")
+          sub_name = ent:subscription_values.defaultsTo({}).filter(function(v, k){v.get("Tx") == Tx}).keys().head()// .klog("***** Subscription Name *****: ")
+          ruleset_name = "temperature_store"
+          function_name = "current_temperature"
+          temperature = wrangler:skyQuery(Tx, ruleset_name, function_name, [], Tx_host)
+          array_result = {}.put(sub_name, temperature)
+          array_result
         }
       )
-      temperature_map
+      temperature_array.reduce(function(map_1, map_2){map_1.put(map_2.keys().head(), map_2.values().head())})
     }
   }
    
@@ -48,8 +55,7 @@ ruleset manage_sensors {
       // The lab specifies that the name must come from the event attributes;
       // if no name is provided, we will enforce that no new child pico can be 
       // created.
-      name_provided = (event:attr("name") == "" || event:attr("name").isnull()) 
-        => false | true
+      name_provided = (event:attr("name") == "" || event:attr("name").isnull()) => false | true
       name = name_provided => event:attr("name") | "default name"
       
       name_unique = not(ent:subscription_values.defaultsTo({}).keys() >< name)

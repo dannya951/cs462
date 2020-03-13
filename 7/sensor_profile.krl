@@ -25,7 +25,7 @@ ruleset sensor_profile {
     }
     
     threshold_temperature = function() {
-      threshold = ent:threshold_temperature.defaultsTo(212)
+      threshold = ent:threshold_temperature.defaultsTo(85)
       threshold
     }
     
@@ -43,14 +43,14 @@ ruleset sensor_profile {
   rule profile_updated {
     select when sensor profile_updated
     pre {
-      location = event:attrs.get(["location"]).decode() == "" || event:attrs.get(["location"]).decode().isnull() 
-        => "Provo, UT" | event:attrs.get(["location"]).decode()
-      name = event:attrs.get(["name"]).decode() == "" || event:attrs.get(["name"]).decode().isnull()
-        => "Wovyn Device" | event:attrs.get(["name"]).decode()
-      threshold = event:attrs.get(["threshold"]).decode() == "" || event:attrs.get(["threshold"]).decode().isnull() 
-        => 212 | event:attrs.get(["threshold"]).decode().as("Number")
-      parsed_number = event:attrs.get(["number"]).decode() == "" || event:attrs.get(["number"]).decode().isnull() 
-        => "+18017848121" | event:attrs.get(["number"]).decode()
+      location = event:attrs.get("location") == "" || event:attrs.get("location").isnull() 
+        => "Provo, UT" | event:attrs.get("location")
+      name = event:attrs.get("name") == "" || event:attrs.get("name").isnull()
+        => "Wovyn Device" | event:attrs.get("name")
+      threshold = event:attrs.get("threshold") == "" || event:attrs.get("threshold").isnull() 
+        => 85 | event:attrs.get("threshold").as("Number")
+      parsed_number = event:attrs.get("number") == "" || event:attrs.get("number").isnull() 
+        => "+18017848121" | event:attrs.get("number")
       number = parsed_number.substr(0, 1) == "+" => parsed_number | "+" + parsed_number
     }
     noop()
@@ -59,7 +59,7 @@ ruleset sensor_profile {
       ent:sensor_location := location
       ent:sensor_name := ent:sensor_name.defaultsTo("Wovyn Device")
       ent:sensor_name := name
-      ent:threshold_temperature := ent:threshold_temperature.defaultsTo(212)
+      ent:threshold_temperature := ent:threshold_temperature.defaultsTo(85)
       ent:threshold_temperature := threshold
       ent:sms_number := ent:sms_number.defaultsTo("+18017848121")
       ent:sms_number := number
@@ -72,7 +72,7 @@ ruleset sensor_profile {
     always{
       ent:sensor_location := "Provo, UT"
       ent:sensor_name := "Wovyn Device"
-      ent:threshold_temperature := 212
+      ent:threshold_temperature := 85
       ent:sms_number := "+18017848121"
     }
   }

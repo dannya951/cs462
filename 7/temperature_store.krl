@@ -40,11 +40,13 @@ ruleset temperature_store {
   rule collect_temperatures {
     select when wovyn new_temperature_reading
     pre {
-      temperature = event:attrs.get(["temperature"]).decode()
-      temperature_value = temperature.get(["temperatureF"])
-      timestamp = event:attrs.get(["timestamp"]).decode()
-      message = "Temperature at " + timestamp + ": " + temperature_value + " Degrees"
+      temperature = event:attrs.get("temperature")
+      temperature_value = temperature.get("temperatureF")
+      timestamp = event:attrs.get("timestamp")
+      message = ("Temperature at " + timestamp + ": " + temperature_value + " Degrees")
+        .klog("New Reading Message: ")
     }
+    // temperatureF
     //send_directive("Collected New Temperature Reading", {"Message": message})
     noop()
     always{
@@ -58,10 +60,11 @@ ruleset temperature_store {
   rule collect_threshold_violations {
     select when wovyn threshold_violation
     pre {
-      temperature = event:attrs.get(["temperature"]).decode()
-      temperature_value = temperature.get(["temperatureF"])
-      timestamp = event:attrs.get(["timestamp"]).decode()
-      message = "Temperature at " + timestamp + ": " + temperature_value + " Degrees"
+      temperature = event:attrs.get("temperature")
+      temperature_value = temperature.get("temperatureF")
+      timestamp = event:attrs.get("timestamp")
+      message = ("Temperature at " + timestamp + ": " + temperature_value + " Degrees")
+        .klog("Threshold Violation Message: ")
     }
     //send_directive("Received New Threshold Violation", {"Message": message})
     noop()

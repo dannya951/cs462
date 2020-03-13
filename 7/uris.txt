@@ -16,3 +16,8 @@ http://192.168.1.21:8080/?subscr
 https://raw.githubusercontent.com/Picolab/pico_lessons/master/subscriptions/mischief.owner.krl
 https://raw.githubusercontent.com/Picolab/pico_lessons/master/subscriptions/mischief.krl
 https://raw.githubusercontent.com/Picolab/pico_lessons/master/subscriptions/mischief.thing.krl
+
+
+
+"generic_thing": 
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":95}]}}
