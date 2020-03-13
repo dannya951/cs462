@@ -2,14 +2,11 @@ http://192.168.1.21:8080/sky/event/Vm944xm33qBTh5uMBxPXbM/000/domain_name/event_
 http://192.168.1.21:8080/sky/cloud/Vm944xm33qBTh5uMBxPXbM/ruleset_id/function_name
 
 
-
 ?name=sensor_name
 http://192.168.1.21:8080/sky/event/Vm944xm33qBTh5uMBxPXbM/000/sensor/new_sensor?name=sensor_1
 
 
-
 http://192.168.1.21:8080/sky/event/Hx8XiEhyfFjmYFCzHtudeA/000/echo/hello
-
 
 
 http://192.168.1.21:8080/?subscr
@@ -19,5 +16,16 @@ https://raw.githubusercontent.com/Picolab/pico_lessons/master/subscriptions/misc
 
 
 
+
+Threshold Temperature set at 85 degrees
+
+
 "generic_thing": 
+
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":70}]}}
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":75}]}}
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":80}]}}
+
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":90}]}}
 {"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":95}]}}
+{"typeId":"1.0", "typeName": "generic.simple", "data":{"temperature":[{"name": "ambient temperature", "temperatureF":100}]}}
